@@ -1,12 +1,6 @@
-import { Application } from 'express'
 import request from 'supertest'
 
-import startServer from '../../server'
-
-let app: Application
-beforeAll(async () => {
-  app = await startServer()
-})
+import app from '../../app'
 
 describe('worlds api', () => {
   it('should get filtered words', async () => {
@@ -14,6 +8,8 @@ describe('worlds api', () => {
 
     expect(response.status).toEqual(200)
     expect(response.body).toEqual({ words: ['abaculi', 'abaculus', 'abacus', 'abacuses'] })
+
+    return
   })
 
   it('should not get words', async () => {
@@ -21,5 +17,7 @@ describe('worlds api', () => {
 
     expect(response.status).toEqual(200)
     expect(response.body).toEqual({ words: [] })
+
+    return
   })
 })

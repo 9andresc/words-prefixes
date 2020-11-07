@@ -7,7 +7,7 @@
     "pck:check": "ncu",
     "pck:update": "ncu -u",
     "start": "ts-node -r tsconfig-paths/register src/index.ts",
-    "test": "jest --detectOpenHandles --forceExit"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
