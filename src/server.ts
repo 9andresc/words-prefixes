@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express, { Application, NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 
 import wordsApi from 'api/words'
@@ -23,7 +23,7 @@ function listen(port: number) {
   })
 }
 
-async function startServer() {
+async function startServer(): Promise<Application> {
   try {
     const port = process.env.PORT || 3000
     await listen(Number(port))
@@ -32,13 +32,7 @@ async function startServer() {
     console.error(error)
     process.exit(1)
   }
+  return app
 }
 
-process.on('uncaughtException', (error) => {
-  console.error(error)
-})
-process.on('unhandledRejection', (error) => {
-  console.error(error)
-})
-
-startServer()
+export default startServer
